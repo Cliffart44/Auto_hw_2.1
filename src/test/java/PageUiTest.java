@@ -23,7 +23,7 @@ class PageUiTest {
     }
 
     @Test
-    public void shouldSubmitAlertByEmptyName(){
+    public void shouldSubmitAlertByEmptyName() {
         driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+14318791955");
@@ -34,7 +34,7 @@ class PageUiTest {
     }
 
     @Test
-    public void shouldSubmitAlertByWrongName(){
+    public void shouldSubmitAlertByWrongName() {
         driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("+14318791955");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+14318791955");
@@ -45,7 +45,7 @@ class PageUiTest {
     }
 
     @Test
-    public void shouldSubmitAlertByEmptyPhone(){
+    public void shouldSubmitAlertByEmptyPhone() {
         driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Альберт Эйнштейн");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("");
@@ -56,7 +56,7 @@ class PageUiTest {
     }
 
     @Test
-    public void shouldSubmitAlertByWrongPhone(){
+    public void shouldSubmitAlertByWrongPhone() {
         driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Альберт Эйнштейн");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("Альберт Эйнштейн");
@@ -64,5 +64,14 @@ class PageUiTest {
         driver.findElement(By.cssSelector(".form-field .button__content")).click();
         String text = driver.findElement(By.xpath("//span[text()='Мобильный телефон']/following-sibling::span[contains(@class, 'input__sub')]")).getText().trim();
         assertEquals("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.", text);
+    }
+
+    @Test
+    public void shouldDisplayAlertByCheckbox() {
+        driver.get("http://localhost:9999");
+        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Альберт Эйнштейн");
+        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+14318791955");
+        driver.findElement(By.cssSelector(".form-field .button__content")).click();
+        assertTrue(driver.findElement(By.cssSelector(".input_invalid>.checkbox__box")).isDisplayed());
     }
 }
