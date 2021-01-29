@@ -1,5 +1,7 @@
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,17 +11,27 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PageUiTest {
-    WebDriver driver = new ChromeDriver(new ChromeOptions().addArguments("--headless", "--disable-gpu"));
+    private WebDriver driver;
 
     @BeforeAll
-    static void setUp() {
-        System.setProperty("webdriver.chrome.driver", "artifacts/chromedriver86");
+    public static void setUp() {
+        WebDriverManager.chromedriver().setup();
+    }
+
+    @BeforeEach
+    public void setupTest() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+        options.addArguments("--disable-gpu");
+        driver = new ChromeDriver(options);
     }
 
     @AfterEach
     void down() {
-        driver.quit();
-        driver = null;
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
     }
 
     @Test
