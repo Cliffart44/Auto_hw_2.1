@@ -1,3 +1,4 @@
+import org.apache.commons.lang3.SystemUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -13,13 +14,17 @@ class PageUiTest {
 
     @BeforeAll
     static void setUp() {
-        System.setProperty("webdriver.chrome.driver", "artifacts/chromedriver86");
+        if (SystemUtils.IS_OS_WINDOWS)
+            System.setProperty("webdriver.chrome.driver", "artifacts/chromedriver_win88.exe");
+        else System.setProperty("webdriver.chrome.driver", "artifacts/chromedriver_linux88");
     }
 
     @AfterEach
     void down() {
-        driver.quit();
-        driver = null;
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
     }
 
     @Test

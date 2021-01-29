@@ -1,0 +1,3 @@
+java -jar artifacts/app-order.jar
+
+java -jar ./artifacts/app-order.jar

@@ -2,3 +2,6 @@
 
 ---
 [![Build status](https://ci.appveyor.com/api/projects/status/i36n26xy2m3slm9v/branch/main?svg=true)](https://ci.appveyor.com/project/Cliffart44/auto-hw-2-1/branch/main)
+
+---
+[![Gitter](https://badges.gitter.im/Cliffart44/community.svg)](https://gitter.im/Cliffart44/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
